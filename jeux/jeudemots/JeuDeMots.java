@@ -6,7 +6,7 @@ import projetBPO.jeux.IEtat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class JeuDeMots extends EtatAvecEtatFinalPredefini implements Iterable<IEtat>{
+public class JeuDeMots extends EtatAvecEtatFinalPredefini{
 
     private StringBuilder mot ;
     private static Dictionnaire dico ;

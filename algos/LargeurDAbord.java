@@ -6,16 +6,31 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * @author Aurélien
+ * @version Décembre 2018
+ */
 public class LargeurDAbord implements IRecherche {
 
+    /**
+     * Existe-t-il un chemin entre l'état actuel et celui passé en paramètre ?
+     * @param etat état à atteindre
+     * @return vrai s'il existe un chemin
+     */
     public boolean existeChemin(IEtat etat){
         Historique hist = new Historique();
         return existeChemin(etat, hist);
     }
 
+    /**
+     * Existe-t-il un chemin entre l'état actuel et celui passé en paramètre (sans boucles) ?
+     * @param etat état à atteindre
+     * @param histo historique des déplacements
+     * @return vrai s'il existe un chemin sans boucle
+     */
     private boolean existeChemin(IEtat etat, Historique histo){
         boolean trouve = etat.estFinal() ;
-        boolean cyclique = false ;
+        boolean cyclique ;
         Queue<IEtat> file = new LinkedList<IEtat>();
         file.add(etat);
 
@@ -28,10 +43,12 @@ public class LargeurDAbord implements IRecherche {
 
             if (!cyclique) {
                 while (iter.hasNext()) {
-                    file.add(iter.next());
+                    IEtat succ = iter.next();
+                    file.add(succ);
                 }
             }
         }
+
         return trouve ;
     }
 }

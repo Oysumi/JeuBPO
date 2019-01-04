@@ -6,11 +6,19 @@ import projetBPO.jeux.IEtat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * @author Aurélien
+ * @version Décembre 2018
+ */
 public class JeuDeMots extends EtatAvecEtatFinalPredefini{
 
     private StringBuilder mot ;
     private static Dictionnaire dico ;
 
+    /**
+     * Fixe le jeu de mot avec un mot de départ
+     * @param word mot de départ
+     */
     public JeuDeMots(String word){
         // On récupère la taille du mot
         int size = word.length();
@@ -19,18 +27,35 @@ public class JeuDeMots extends EtatAvecEtatFinalPredefini{
         mot.append(word.toUpperCase());
     }
 
-    public void setDictionnaire(Dictionnaire d){
+    /**
+     * Fixe le dictionnaire
+     * @param d dictionnaire
+     */
+    public static void setDictionnaire(Dictionnaire d){
         dico = d ;
     }
 
+    /**
+     * Méthode toString du jeu de mot
+     * @return une chaîne de caractère contenant le mot actuel du jeu
+     */
     public String toString(){
         return mot.toString();
     }
 
+    /**
+     * Est-ce que le mot actuel est égal à un autre mot ?
+     * @param etat le mot éventuellement égale
+     * @return vrai si les deux mots sont égaux
+     */
     public boolean equals(Object etat){
         return toString().equalsIgnoreCase(etat.toString());
     }
 
+    /**
+     * Itérateur du jeu de mot
+     * @return tous les mots existants dans le dictionnaire obtenus en ne changeant qu'une lettre
+     */
     public Iterator<IEtat> iterator(){
         int size = mot.length();
         int index = 0 ;

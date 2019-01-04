@@ -53,6 +53,42 @@ class CollectionPassageTest {
     }
 
     @Test
+    void testCopie() {
+        CollectionPassage copie = new CollectionPassage(collecPass);
+        int size = copie.taille() ;
+
+        if (size != collecPass.taille()){
+            fail("La copie n'est pas bonne.");
+        }
+
+        for (int i = 0 ; i < size ; i++){
+            if (!copie.getPassage(i).premiereSalle().toString().equals(collecPass.getPassage(i).premiereSalle().toString())){
+                fail("La copie n'est pas bonne.");
+            }
+            if (!copie.getPassage(i).secondeSalle().toString().equals(collecPass.getPassage(i).secondeSalle().toString())){
+                fail("La copie n'est pas bonne.");
+            }
+            if (copie.getPassage(i).activePiege() != collecPass.getPassage(i).activePiege()){
+                fail("La copie n'est pas bonne.");
+            }
+            if (copie.getPassage(i).activeTrappe() != collecPass.getPassage(i).activeTrappe()){
+                fail("La copie n'est pas bonne.");
+            }
+        }
+
+        Piece testUn = new Piece(14);
+        Piece testDeux = new Piece(17);
+        Passage test = new Passage(testUn, testDeux);
+
+        collecPass.ajouterPassage(test);
+
+        if (size == collecPass.taille()){
+            fail("La copie n'est que superficielle.");
+        }
+
+    }
+
+    @Test
     void taille() {
         if (collecPass.taille() != 9){
             fail("La collection ne contient pas le bon nombre de passage.");
@@ -68,7 +104,7 @@ class CollectionPassageTest {
             fail("La collection ne contient pas le nombre de passage (ajouterPassage).");
         }
 
-        Passage res = collecPass.getPassage(10);
+        Passage res = collecPass.getPassage(9);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }
@@ -87,7 +123,7 @@ class CollectionPassageTest {
     void getPassage() {
         Passage res ;
 
-        res = collecPass.getPassage(1);
+        res = collecPass.getPassage(0);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }
@@ -101,7 +137,7 @@ class CollectionPassageTest {
             fail("La collection de passage ne retourne pas le bon passage.");
         }
 
-        res = collecPass.getPassage(2);
+        res = collecPass.getPassage(1);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }
@@ -115,7 +151,7 @@ class CollectionPassageTest {
             fail("La collection de passage ne retourne pas le bon passage.");
         }
 
-        res = collecPass.getPassage(3);
+        res = collecPass.getPassage(2);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }
@@ -129,7 +165,7 @@ class CollectionPassageTest {
             fail("La collection de passage ne retourne pas le bon passage.");
         }
 
-        res = collecPass.getPassage(4);
+        res = collecPass.getPassage(3);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }
@@ -143,7 +179,7 @@ class CollectionPassageTest {
             fail("La collection de passage ne retourne pas le bon passage.");
         }
 
-        res = collecPass.getPassage(5);
+        res = collecPass.getPassage(4);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }
@@ -157,7 +193,7 @@ class CollectionPassageTest {
             fail("La collection de passage ne retourne pas le bon passage.");
         }
 
-        res = collecPass.getPassage(6);
+        res = collecPass.getPassage(5);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }
@@ -171,7 +207,7 @@ class CollectionPassageTest {
             fail("La collection de passage ne retourne pas le bon passage.");
         }
 
-        res = collecPass.getPassage(7);
+        res = collecPass.getPassage(6);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }
@@ -185,7 +221,7 @@ class CollectionPassageTest {
             fail("La collection de passage ne retourne pas le bon passage.");
         }
 
-        res = collecPass.getPassage(8);
+        res = collecPass.getPassage(7);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }
@@ -199,7 +235,7 @@ class CollectionPassageTest {
             fail("La collection de passage ne retourne pas le bon passage.");
         }
 
-        res = collecPass.getPassage(9);
+        res = collecPass.getPassage(8);
         if (res.activePiege()){
             fail("Le passage n'active aucun piège.");
         }

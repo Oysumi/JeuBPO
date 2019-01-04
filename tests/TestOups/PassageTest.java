@@ -54,6 +54,29 @@ class PassageTest {
     }
 
     @Test
+    void testCopie() {
+        Passage copie = new Passage(passUn);
+        if (!copie.premiereSalle().toString().equals(passUn.premiereSalle().toString())){
+            fail("La copie n'est pas bonne.");
+        }
+        if (!copie.secondeSalle().toString().equals(passUn.secondeSalle().toString())){
+            fail("La copie n'est pas bonne.");
+        }
+        if (copie.activePiege() != passUn.activePiege()){
+            fail("La copie n'est pas bonne.");
+        }
+        if (copie.activeTrappe() != passUn.activeTrappe()){
+            fail("La copie n'est pas bonne.");
+        }
+
+        passUn.ajouterPiege(9);
+
+        if (copie.activeTrappe() == passUn.activeTrappe()){
+            fail("La copie n'est que superficielle.");
+        }
+    }
+
+    @Test
     void ajouterPiege() {
         passUn.ajouterPiege(5);
         if (!passUn.activePiege()){

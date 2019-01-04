@@ -30,6 +30,22 @@ class MondeTest {
     }
 
     @Test
+    void testCopie(){
+        Monde newWorld = new Monde(monMonde);
+        for (int i = 1 ; i < monMonde.nbSalles() ; i++){
+            if (!newWorld.getPiece(i).toString().equals(monMonde.getPiece(i).toString())){
+                fail("La copie de monde ne s'est pas bien réalisée.");
+            }
+        }
+
+        monMonde.ouvrirFermer(8);
+
+        if (newWorld.getPiece(8).toString().equals(monMonde.getPiece(8))) {
+            fail("La copie n'est que supérificielle.");
+        }
+    }
+
+    @Test
     void instanciation(){
         if (monMonde.nbSalles() != 9){
             fail("Le monde ne contient pas 9 salles mais : " + monMonde.nbSalles() + " salles.");
@@ -37,7 +53,16 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        if (!monMonde.getPiece(1).toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
+        if (!monMonde.getPiece(0).toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
+            fail("Le monde ne contient pas les bonnes pièces.");
+        }
+        if (monMonde.getPiece(0).nbPassages() != 0){
+            fail("Le monde ne contient pas les bonnes pièces.");
+        }
+
+        /*******************************************************************************************************/
+
+        if (!monMonde.getPiece(1).toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes pièces.");
         }
         if (monMonde.getPiece(1).nbPassages() != 0){
@@ -46,7 +71,7 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        if (!monMonde.getPiece(2).toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
+        if (!monMonde.getPiece(2).toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes pièces.");
         }
         if (monMonde.getPiece(2).nbPassages() != 0){
@@ -55,7 +80,7 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        if (!monMonde.getPiece(3).toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
+        if (!monMonde.getPiece(3).toString().equals("Numéro : 4 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes pièces.");
         }
         if (monMonde.getPiece(3).nbPassages() != 0){
@@ -64,7 +89,16 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        if (!monMonde.getPiece(4).toString().equals("Numéro : 4 | Trésor : false | Trappe : false")){
+        if (!monMonde.getPiece(4).toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
+            fail("Le monde ne contient pas les bonnes pièces.");
+        }
+        if (monMonde.getPiece(4).nbPassages() != 0){
+            fail("Le monde ne contient pas les bonnes pièces.");
+        }
+
+        /*******************************************************************************************************/
+
+        if (!monMonde.getPiece(5).toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes pièces.");
         }
         if (monMonde.getPiece(5).nbPassages() != 0){
@@ -73,7 +107,7 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        if (!monMonde.getPiece(6).toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
+        if (!monMonde.getPiece(6).toString().equals("Numéro : 7 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes pièces.");
         }
         if (monMonde.getPiece(6).nbPassages() != 0){
@@ -82,7 +116,7 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        if (!monMonde.getPiece(7).toString().equals("Numéro : 7 | Trésor : false | Trappe : false")){
+        if (!monMonde.getPiece(7).toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes pièces.");
         }
         if (monMonde.getPiece(7).nbPassages() != 0){
@@ -91,19 +125,10 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        if (!monMonde.getPiece(8).toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
+        if (!monMonde.getPiece(8).toString().equals("Numéro : 9 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes pièces.");
         }
         if (monMonde.getPiece(8).nbPassages() != 0){
-            fail("Le monde ne contient pas les bonnes pièces.");
-        }
-
-        /*******************************************************************************************************/
-
-        if (!monMonde.getPiece(9).toString().equals("Numéro : 9 | Trésor : false | Trappe : false")){
-            fail("Le monde ne contient pas les bonnes pièces.");
-        }
-        if (monMonde.getPiece(9).nbPassages() != 0){
             fail("Le monde ne contient pas les bonnes pièces.");
         }
     }
@@ -124,19 +149,19 @@ class MondeTest {
 
          */
 
+        monMonde.ajouterPassage(0,1);
         monMonde.ajouterPassage(1,2);
-        monMonde.ajouterPassage(2,3);
-        monMonde.ajouterPassage(3,6);
         monMonde.ajouterPassage(2,5);
-        monMonde.ajouterPassage(5,6);
-        monMonde.ajouterPassage(5,8);
-        monMonde.ajouterPassage(8,7);
+        monMonde.ajouterPassage(1,4);
+        monMonde.ajouterPassage(4,5);
+        monMonde.ajouterPassage(4,7);
+        monMonde.ajouterPassage(7,6);
 
         Piece res ;
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(1) ;
+        res = monMonde.getPiece(0) ;
         if (res.getNumero() != 1){
             fail("La salle du monde ne porte pas le bon numéro.");
         }
@@ -149,22 +174,22 @@ class MondeTest {
         if (res.nbPassages() != 1){
             fail("La salle ne contient pas le bon nombre de passages.");
         }
-        if (res.getPassage(1).activePiege()){
+        if (res.getPassage(0).activePiege()){
             fail("Le passage n'active pas de trappe.");
         }
-        if (res.getPassage(1).activeTrappe() != -1){
+        if (res.getPassage(0).activeTrappe() != -1){
             fail("Le passage n'active pas de trappe.");
         }
-        if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(2) ;
+        res = monMonde.getPiece(1) ;
         if (res.nbPassages() != 3){
             fail("La salle ne contient pas le bon nombre de passages.");
         }
@@ -177,34 +202,34 @@ class MondeTest {
         if (res.estUnTresor()){
             fail("Le monde ne contient pas les bonnes salles (trésors).");
         }
-        if (res.getPassage(1).activePiege()){
+        if (res.getPassage(0).activePiege()){
             fail("Le passage n'active pas de trappe.");
         }
-        if (res.getPassage(1).activeTrappe() != -1){
+        if (res.getPassage(0).activeTrappe() != -1){
             fail("Le passage n'active pas de trappe.");
+        }
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
+        }
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
         }
         if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
         if (!res.getPassage(2).premiereSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
-        if (!res.getPassage(2).secondeSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(3).premiereSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(3).secondeSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(2).secondeSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(3) ;
+        res = monMonde.getPiece(2) ;
         if (res.nbPassages() != 2){
             fail("La salle ne contient pas le bon nombre de passages : " + res.nbPassages());
         }
@@ -217,28 +242,28 @@ class MondeTest {
         if (res.estUnTresor()){
             fail("Le monde ne contient pas les bonnes salles (trésors).");
         }
-        if (res.getPassage(1).activePiege()){
+        if (res.getPassage(0).activePiege()){
             fail("Le passage n'active pas de trappe.");
         }
-        if (res.getPassage(1).activeTrappe() != -1){
+        if (res.getPassage(0).activeTrappe() != -1){
             fail("Le passage n'active pas de trappe.");
+        }
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
+        }
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
         }
         if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(2).premiereSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(2).secondeSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(4) ;
+        res = monMonde.getPiece(3) ;
         if (res.nbPassages() != 0){
             fail("La salle ne contient pas le bon nombre de passages.");
         }
@@ -254,7 +279,7 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(5) ;
+        res = monMonde.getPiece(4) ;
         if (res.nbPassages() != 3){
             fail("La salle ne contient pas le bon nombre de passages.");
         }
@@ -267,34 +292,34 @@ class MondeTest {
         if (res.estUnTresor()){
             fail("Le monde ne contient pas les bonnes salles (trésors).");
         }
-        if (res.getPassage(1).activePiege()){
+        if (res.getPassage(0).activePiege()){
             fail("Le passage n'active pas de trappe.");
         }
-        if (res.getPassage(1).activeTrappe() != -1){
+        if (res.getPassage(0).activeTrappe() != -1){
             fail("Le passage n'active pas de trappe.");
+        }
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
+        }
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
         }
         if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
         if (!res.getPassage(2).premiereSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
-        if (!res.getPassage(2).secondeSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(3).premiereSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(3).secondeSalle().toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(2).secondeSalle().toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(6) ;
+        res = monMonde.getPiece(5) ;
         if (res.nbPassages() != 2){
             fail("La salle ne contient pas le bon nombre de passages.");
         }
@@ -307,28 +332,28 @@ class MondeTest {
         if (res.estUnTresor()){
             fail("Le monde ne contient pas les bonnes salles (trésors).");
         }
-        if (res.getPassage(1).activePiege()){
+        if (res.getPassage(0).activePiege()){
             fail("Le passage n'active pas de trappe.");
         }
-        if (res.getPassage(1).activeTrappe() != -1){
+        if (res.getPassage(0).activeTrappe() != -1){
             fail("Le passage n'active pas de trappe.");
+        }
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
+        }
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
         }
         if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(2).premiereSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(2).secondeSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(7) ;
+        res = monMonde.getPiece(6) ;
         if (res.nbPassages() != 1){
             fail("La salle ne contient pas le bon nombre de passages.");
         }
@@ -341,22 +366,22 @@ class MondeTest {
         if (res.estUnTresor()){
             fail("Le monde ne contient pas les bonnes salles (trésors).");
         }
-        if (res.getPassage(1).activePiege()){
+        if (res.getPassage(0).activePiege()){
             fail("Le passage n'active pas de trappe.");
         }
-        if (res.getPassage(1).activeTrappe() != -1){
+        if (res.getPassage(0).activeTrappe() != -1){
             fail("Le passage n'active pas de trappe.");
         }
-        if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 7 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 7 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(8) ;
+        res = monMonde.getPiece(7) ;
         if (res.nbPassages() != 2){
             fail("La salle ne contient pas le bon nombre de passages.");
         }
@@ -369,28 +394,28 @@ class MondeTest {
         if (res.estUnTresor()){
             fail("Le monde ne contient pas les bonnes salles (trésors).");
         }
-        if (res.getPassage(1).activePiege()){
+        if (res.getPassage(0).activePiege()){
             fail("Le passage n'active pas de trappe.");
         }
-        if (res.getPassage(1).activeTrappe() != -1){
+        if (res.getPassage(0).activeTrappe() != -1){
             fail("Le passage n'active pas de trappe.");
+        }
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
+        }
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
+            fail("Le passage n'est pas le bon.");
         }
         if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(2).premiereSalle().toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
-            fail("Le passage n'est pas le bon.");
-        }
-        if (!res.getPassage(2).secondeSalle().toString().equals("Numéro : 7 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 7 | Trésor : false | Trappe : false")){
             fail("Le passage n'est pas le bon.");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(9) ;
+        res = monMonde.getPiece(8) ;
         if (res.nbPassages() != 0){
             fail("La salle ne contient pas le bon nombre de passages.");
         }
@@ -422,11 +447,18 @@ class MondeTest {
 
          */
 
-        monMonde.ajouterTresor(3);
-        monMonde.ajouterTresor(5);
-        monMonde.ajouterTresor(7);
+        monMonde.ajouterTresor(2);
+        monMonde.ajouterTresor(4);
+        monMonde.ajouterTresor(6);
 
         Piece res ;
+
+        /*******************************************************************************************************/
+
+        res = monMonde.getPiece(0);
+        if (res.estUnTresor()){
+            fail("Cette pièce n'est pas un trésor.");
+        }
 
         /*******************************************************************************************************/
 
@@ -438,55 +470,48 @@ class MondeTest {
         /*******************************************************************************************************/
 
         res = monMonde.getPiece(2);
-        if (res.estUnTresor()){
-            fail("Cette pièce n'est pas un trésor.");
+        if (!res.estUnTresor()){
+            fail("Cette pièce est un trésor.");
         }
 
         /*******************************************************************************************************/
 
         res = monMonde.getPiece(3);
-        if (!res.estUnTresor()){
-            fail("Cette pièce est un trésor.");
+        if (res.estUnTresor()){
+            fail("Cette pièce n'est pas un trésor.");
         }
 
         /*******************************************************************************************************/
 
         res = monMonde.getPiece(4);
-        if (res.estUnTresor()){
-            fail("Cette pièce n'est pas un trésor.");
+        if (!res.estUnTresor()){
+            fail("Cette pièce est un trésor.");
         }
 
         /*******************************************************************************************************/
 
         res = monMonde.getPiece(5);
-        if (!res.estUnTresor()){
-            fail("Cette pièce est un trésor.");
+        if (res.estUnTresor()){
+            fail("Cette pièce n'est pas un trésor.");
         }
 
         /*******************************************************************************************************/
 
         res = monMonde.getPiece(6);
-        if (res.estUnTresor()){
-            fail("Cette pièce n'est pas un trésor.");
-        }
-
-        /*******************************************************************************************************/
-
-        res = monMonde.getPiece(7);
         if (!res.estUnTresor()){
             fail("Cette pièce est un trésor.");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(8);
+        res = monMonde.getPiece(7);
         if (res.estUnTresor()){
             fail("Cette pièce n'est pas un trésor.");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(9);
+        res = monMonde.getPiece(8);
         if (res.estUnTresor()){
             fail("Cette pièce n'est pas un trésor.");
         }
@@ -508,81 +533,81 @@ class MondeTest {
 
          */
 
-        monMonde.ajouterOuvertureFermeture(4,1,2);
-        monMonde.ajouterOuvertureFermeture(7,5,6);
-        monMonde.ajouterOuvertureFermeture(9,3,6);
+        monMonde.ajouterOuvertureFermetureTrappe(3,0,1);
+        monMonde.ajouterOuvertureFermetureTrappe(6,4,5);
+        monMonde.ajouterOuvertureFermetureTrappe(8,2,5);
 
         Piece res ;
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(1);
+        res = monMonde.getPiece(0);
         if (!res.toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes salles.");
         }
         if (res.nbPassages() != 1){
             fail("Le monde ne contient pas les bonnes salles avec les bons passages.");
         }
-        if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
-        if (!res.getPassage(1).activePiege()){
+        if (!res.getPassage(0).activePiege()){
             fail("Le monde ne contient pas les bons passages (qui devraient activer des pièges.");
         }
-        if (res.getPassage(1).activeTrappe() != 4){
+        if (res.getPassage(0).activeTrappe() != 3){
             fail("Le monde ne contient pas les bons passages (le numéro de la trappe à activer n'est pas bon).");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(2);
+        res = monMonde.getPiece(1);
         if (!res.toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes salles.");
         }
         if (res.nbPassages() != 1){
             fail("Le monde ne contient pas les bonnes salles avec les bons passages.");
         }
-        if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 2 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 1 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
-        if (!res.getPassage(1).activePiege()){
+        if (!res.getPassage(0).activePiege()){
             fail("Le monde ne contient pas les bons passages (qui devraient activer des pièges.");
         }
-        if (res.getPassage(1).activeTrappe() != 4){
+        if (res.getPassage(0).activeTrappe() != 3){
             fail("Le monde ne contient pas les bons passages (le numéro de la trappe à activer n'est pas bon).");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(3);
+        res = monMonde.getPiece(2);
         if (!res.toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes salles.");
         }
         if (res.nbPassages() != 1){
             fail("Le monde ne contient pas les bonnes salles avec les bons passages.");
         }
-        if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
-        if (!res.getPassage(1).activePiege()){
+        if (!res.getPassage(0).activePiege()){
             fail("Le monde ne contient pas les bons passages (qui devraient activer des pièges.");
         }
-        if (res.getPassage(1).activeTrappe() != 9){
+        if (res.getPassage(0).activeTrappe() != 8){
             fail("Le monde ne contient pas les bons passages (le numéro de la trappe à activer n'est pas bon).");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(4);
+        res = monMonde.getPiece(3);
         if (!res.toString().equals("Numéro : 4 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes salles.");
         }
@@ -592,63 +617,63 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(5);
+        res = monMonde.getPiece(4);
         if (!res.toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes salles.");
         }
         if (res.nbPassages() != 1){
             fail("Le monde ne contient pas les bonnes salles avec les bons passages.");
         }
-        if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
-        if (!res.getPassage(1).activePiege()){
+        if (!res.getPassage(0).activePiege()){
             fail("Le monde ne contient pas les bons passages (qui devraient activer des pièges.");
         }
-        if (res.getPassage(1).activeTrappe() != 7){
+        if (res.getPassage(0).activeTrappe() != 6){
             fail("Le monde ne contient pas les bons passages (le numéro de la trappe à activer n'est pas bon).");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(6);
+        res = monMonde.getPiece(5);
         if (!res.toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes salles.");
         }
         if (res.nbPassages() != 2){
             fail("Le monde ne contient pas les bonnes salles avec les bons passages.");
         }
+        if (!res.getPassage(0).premiereSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
+            fail("Le monde ne contient pas les bons passages.");
+        }
+        if (!res.getPassage(0).secondeSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
+            fail("Le monde ne contient pas les bons passages.");
+        }
+        if (!res.getPassage(0).activePiege()){
+            fail("Le monde ne contient pas les bons passages (qui devraient activer des pièges.");
+        }
+        if (res.getPassage(0).activeTrappe() != 6){
+            fail("Le monde ne contient pas les bons passages (le numéro de la trappe à activer n'est pas bon).");
+        }
         if (!res.getPassage(1).premiereSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
-        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 5 | Trésor : false | Trappe : false")){
+        if (!res.getPassage(1).secondeSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bons passages.");
         }
         if (!res.getPassage(1).activePiege()){
             fail("Le monde ne contient pas les bons passages (qui devraient activer des pièges.");
         }
-        if (res.getPassage(1).activeTrappe() != 7){
-            fail("Le monde ne contient pas les bons passages (le numéro de la trappe à activer n'est pas bon).");
-        }
-        if (!res.getPassage(2).premiereSalle().toString().equals("Numéro : 6 | Trésor : false | Trappe : false")){
-            fail("Le monde ne contient pas les bons passages.");
-        }
-        if (!res.getPassage(2).secondeSalle().toString().equals("Numéro : 3 | Trésor : false | Trappe : false")){
-            fail("Le monde ne contient pas les bons passages.");
-        }
-        if (!res.getPassage(2).activePiege()){
-            fail("Le monde ne contient pas les bons passages (qui devraient activer des pièges.");
-        }
-        if (res.getPassage(2).activeTrappe() != 9){
+        if (res.getPassage(1).activeTrappe() != 8){
             fail("Le monde ne contient pas les bons passages (le numéro de la trappe à activer n'est pas bon).");
         }
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(7);
+        res = monMonde.getPiece(6);
         if (!res.toString().equals("Numéro : 7 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes salles.");
         }
@@ -658,7 +683,7 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(8);
+        res = monMonde.getPiece(7);
         if (!res.toString().equals("Numéro : 8 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes salles.");
         }
@@ -668,7 +693,7 @@ class MondeTest {
 
         /*******************************************************************************************************/
 
-        res = monMonde.getPiece(9);
+        res = monMonde.getPiece(8);
         if (!res.toString().equals("Numéro : 9 | Trésor : false | Trappe : false")){
             fail("Le monde ne contient pas les bonnes salles.");
         }
@@ -679,12 +704,12 @@ class MondeTest {
 
     @Test
     void ouvrirFermerTest(){
-        Piece res = monMonde.getPiece(1);
+        Piece res = monMonde.getPiece(0);
         if (res.trappeOuverte()){
             fail("La trappe doit être fermée.");
         }
 
-        monMonde.ouvrirFermer(1);
+        monMonde.ouvrirFermer(0);
 
         if(!res.trappeOuverte()){
             fail("La trappe doit être maintenant ouverte.");
